@@ -17,6 +17,7 @@ main() {
     while ((type = getop(s)) != EOF) {
         switch (type) {
             case NUMBER:
+                printf("duuh0 pushing %s\n", s);
                 push(atof(s));
                 break;
             case '+':
@@ -35,6 +36,16 @@ main() {
                     push(pop() / op2);
                 else
                     printf("error: zero divisor\n");
+                break;
+            case '%':
+                printf("duuh1 %s\n", s);
+                int a = pop();
+                int b = pop();
+                //result = a % b
+                printf("duuh2 %d\n", a);
+                printf("duuh3 %d\n", b);
+                //printf("duuh4 %s\n", b % a);
+                push(a % b);
                 break;
             case '\n':
                 printf("\t%.8g\n", pop());
@@ -70,6 +81,7 @@ double pop(void) {
 int getch(void);
 
 void ungetch(int);
+
 /* getop: get next character or numeric operand */
 int getop(char s[]) {
     int i, c;
@@ -77,15 +89,14 @@ int getop(char s[]) {
         ;
     s[1] = '\0';
     if (!isdigit(c) && c != '.')
-    return c; /* not a number */
+        return c; /* not a number */
     i = 0;
     if (isdigit(c)) /* collect integer part */
-    while (isdigit(s[++i] = c = getch()))
-        ;
+        while (isdigit(s[++i] = c = getch()))
+            ;
     if (c == '.') /* collect fraction part */
-
-    while (isdigit(s[++i] = c = getch()))
-        ;
+        while (isdigit(s[++i] = c = getch()))
+            ;
     s[i] = '\0';
     if (c != EOF)
         ungetch(c);

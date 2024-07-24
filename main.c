@@ -4,7 +4,7 @@
 
 #define MAXOP 100
 
-main() {
+int main() {
 
     int type;
     double op2;
