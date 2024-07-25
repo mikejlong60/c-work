@@ -17,9 +17,9 @@ int FoldRight(const int *xs, int z, int size, int (*f)(int, int)) {
     int outLength;
     if (size > 1) {//Has at least two elements
         int h = xs[0];
-        int* t = sliceArray(&xs, 1, size, &outLength); 
-        int s = sizeof(t) / sizeof(h);
-        return f(h, FoldRight(t, z, s, f));
+//        int* t = sliceArray(&xs, 1, size, &outLength); 
+//        int s = sizeof(t) / sizeof(h);
+//        return f(h, FoldRight(t, z, s, f));
     } else if (size == 1) {
         int h = xs[0];
     }
@@ -38,9 +38,10 @@ int* sliceArray(const int *array, int start, int end, int *outLength) {
     *outLength = end - start;
     int *slice = (int*)malloc(*outLength * sizeof(int));
 
-    for (int i = 0; i < *outLength; i++) {
+    for (int i = 0; i < *outLength; i++) { 
         slice[i] = array[start + i];
-    }
+        printf("sliceArray element:%d \n", slice[i]);
+   }
  
     return slice;
 }
@@ -48,7 +49,7 @@ int* sliceArray(const int *array, int start, int end, int *outLength) {
 int maint() {
     int numbers[] = {10, 20, 30, 40, 50, 60, 70, 80};
     int start = 2;
-    int end = 5;
+    int end = 7;
     int length;
     printf("length: %d\n", length);
     if (start >= 0 && end <= (sizeof(numbers) / sizeof(numbers[0])) && start < end) {
@@ -56,7 +57,7 @@ int maint() {
         int *slice = sliceArray(numbers, start, end, &length);
         printf("length2: %d\n", length);
         for (int i = 0; i < length; i++) {
-            printf("%d ", slice[i]);
+            printf("slice element:%d ", slice[i]);
         }
         printf("\n");
 
@@ -66,6 +67,27 @@ int maint() {
         printf("slice after free call: %p\n", (void*)slice);
         *slice = NULL;
         printf("slice after setting pointer to NULL: %p\n", *slice);
+
+    //Do it again
+        int length2;
+        int *slice2 = sliceArray(slice, 1, 3, &length2);
+        printf("slice2 length:: %d\n", length2);
+        for (int i = 0; i < length2; i++) {
+            printf("slice2 element:%d \n", slice2[i]);
+        }
+        printf("\n");
+
+        // Remember to free the allocated memory
+        printf("slice before free call: %p\n", (void*)slice2);
+        free(slice2);
+        printf("slice after free call: %p\n", (void*)slice2);
+        *slice2 = NULL;
+        printf("slice after setting pointer to NULL: %p\n", *slice2);
+
+
+
+
+
     } else {
         printf("Invalid slice indices.\n");
     }
@@ -77,8 +99,8 @@ int maint() {
 int main() {
     int xs[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     int size = sizeof(xs) / sizeof(xs[0]);
-    int result = FoldRight(xs, 0, size, sum);
-    printf("Array size in main: %d\n", result);
+    //int result = FoldRight(xs, 0, size, sum);
+    //printf("Array size in main: %d\n", result);
 
     maint();
 
