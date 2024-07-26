@@ -7,15 +7,6 @@ int divide(int numerator, int denominator) {
     return numerator / denominator;
 }
 
-void strcat2(char s[], char t[]) {
-    int i, j;
-    i = j = 0;
-    while (s[i] != '\0')
-        i++;
-    while ((s[i++] = t[j++]) != '\0') //copy
-        ;
-}
-
 int main() {
     char s[] = {'h','e','\0'};
     char t[] = {'l','l','o','\0'};
@@ -33,6 +24,12 @@ int main() {
     printf("t:%s --- %d\n", s, strcmp2(s, expected));
     assert(strcmp2(s, expected) == 0);
 
+
+    char s2[] = {'h','e','\0'};    
+    strcat3(s2, t);
+    printf("string comparison of s:%s to expected:%s is %d\n", s2, expected, strcmp3(s2, expected));
+    printf("t:%s --- %d\n", s2, strcmp3(s2, expected));
+    assert(strcmp3(s2, expected) == 0);
 
 
 }

@@ -17,3 +17,18 @@ int strcmp3(char *s, char *t) {
             return 0;
     return *s - *t;
 }
+
+void strcat2(char s[], char t[]) {
+    int i, j;
+    i = j = 0;
+    while (s[i] != '\0')
+        i++;
+    while ((s[i++] = t[j++]) != '\0') //copy
+        ;
+}
+
+void strcat3(char *s, char *t) {
+    while (*s != '\0') s++;
+    while ((*s++ = *t++) != '\0') //copy
+        ;
+}
