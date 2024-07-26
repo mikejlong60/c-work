@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "mystring.h"
 
 #define ALLOCSIZE 10000 /* size of available space */
 
@@ -11,7 +12,8 @@ char *alloc(int n) /* return pointer to n characters */
         allocp += n;
         return allocp - n; /* old p */
     } else /* not enough room */
-        return 0;
+        printf("no room\n");
+        return NULL;
 }
 
 void afree(char *p) /* free storage pointed to by p */
@@ -25,19 +27,70 @@ void printArray(char *arr, int size) {
     for (int i = 0; i < size; i++) {
         printf("%c", arr[i]);
     }
-    printf("\n");
+    printf("||\n");
+}
+
+int strlen2(char *s) {
+    char *p = s;
+
+    while (*p != '\0') {
+        p++;
+    }
+    return p - s;
+}
+
+//Copy t to s  --array subscript version
+void strcpy2(char *s, char *t) {
+    int i;
+    i = 0;
+    while((s[i] = t[i]) != '\0') {
+        i++;
+    }
+}
+
+//final version. copy t to s which continues the loop until the expression evaluates to false(0).
+void strcpy3(char *s, char *t) {
+    while (*s++ = *t++)
+        ;
 }
 
 int main() {
     char *p = alloc(1000);
-    p = "moike";
-    //printf("%s ", p);
-    //char p1[] = "mike";
-    //printf("%c ", p1[3]);
-    //char *p2 = "mike";
-    //printf("%s ", p2);
-    //allocp[1] = "i";
-    //allocp[2] = '/0';
+    p = "michael";
+    printArray(p, 9);
+    afree(p);
+    printArray(p, 7);
 
-    printArray(p, 5);
+    char *f = p;
+    printArray(f, 7);
+    
+    char *p1 = alloc(10000000);
+    printf("dang:%p\n", p1);
+
+    printf("length of p:%d\n",strlen2(p));
+
+    char *t;
+    strcpy3(t, p);
+    printArray(t, 7);
+    
+    char t2[70];
+    strcpy2(t2, p);
+    printArray(t2, 7);
+ 
+    char s1[] = {'H', 's','e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!', '\0'};
+    char s2[] = {'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!', '\0'};
+
+    printf("String array comparison:%d\n",strcmp2(s1, s2));
+
+    char *s3;
+    char *s4;
+    s3 = "qmichael";
+    s4 = "michael";
+    printf("String pointer comparison:%d\n",strcmp3(s3, s4));
+   
+ 
+
 }
+
+
+
