@@ -18,6 +18,7 @@ int strcmp3(char *s, char *t) {
     return *s - *t;
 }
 
+//
 void strcat2(char s[], char t[]) {
     int i, j;
     i = j = 0;
