@@ -48,21 +48,18 @@ int strend2(char *s, char *t) {
     int lt = strlen2(t) -1;
     int result = 1;
     if (ls < lt) {
-        return 0;
+        result = 0;
     } else {
         //start counting backwards from end of s
-        int i, j;
-        for (; ls >= 0; ) {
+        for (; ls >= 0; ls--, lt--) {
             if (s[ls] == t[lt])  {
                 result = 1;
             } else if (lt < 0) {
-                return result;
+                break;
             } else {
                 result = 0;
             }
-            --ls;
-            --lt;
         }
-        return result;
     }
+    return result;
 }
