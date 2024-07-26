@@ -33,3 +33,36 @@ void strcat3(char *s, char *t) {
     while ((*s++ = *t++) != '\0') //copy
         ;
 }
+
+int strlen2(char *s) {
+    char *p = s;
+
+    while (*++p != '\0') 
+        ;
+    return p - s;
+}
+
+//Returns 1 if string t occurs at the end of string s. 0 otherwise
+int strend2(char *s, char *t) {
+    int ls = strlen2(s) -1;
+    int lt = strlen2(t) -1;
+    int result = 1;
+    if (ls < lt) {
+        return 0;
+    } else {
+        //start counting backwards from end of s
+        int i, j;
+        for (; ls >= 0; ) {
+            if (s[ls] == t[lt])  {
+                result = 1;
+            } else if (lt < 0) {
+                return result;
+            } else {
+                result = 0;
+            }
+            --ls;
+            --lt;
+        }
+        return result;
+    }
+}

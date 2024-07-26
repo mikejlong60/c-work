@@ -2,34 +2,49 @@
 #include <assert.h>
 #include "mystring.h"
 
-int divide(int numerator, int denominator) {
-    assert(denominator != 0); // Ensure the denominator is not zero
-    return numerator / denominator;
-}
-
 int main() {
     char s[] = {'h','e','\0'};
     char t[] = {'l','l','o','\0'};
     strcat2(s, t);
   
     char expected[] = {'h','e','l','l','o', '\0'};
-    printf("string comparison of s:%s to expected:%s is %d\n", s, expected, strcmp3(s, expected));
-    printf("t:%s --- %d\n", s, strcmp3(s, expected));
     assert(strcmp3(s, expected) == 0);
     
 
 
     ////////////////////
-    printf("string comparison of s:%s to expected:%s is %d\n", s, expected, strcmp2(s, expected));
-    printf("t:%s --- %d\n", s, strcmp2(s, expected));
     assert(strcmp2(s, expected) == 0);
 
 
     char s2[] = {'h','e','\0'};    
     strcat3(s2, t);
-    printf("string comparison of s:%s to expected:%s is %d\n", s2, expected, strcmp3(s2, expected));
-    printf("t:%s --- %d\n", s2, strcmp3(s2, expected));
     assert(strcmp3(s2, expected) == 0);
 
+    //test strlen2
+    int a = strlen2(expected);
+    assert(strlen2(expected) == 5);
+
+    //test returns 1 if string s2 occurs at the end of string t2. 0 otherwise
+    char t2[] = {'l','l','o','\0'};
+    char s3[] = {'o', '\0'};
+    assert(strend2(t2, s3) == 1);
+    //This should return false
+    char t3[] = {'l','l','\0'};
+    assert(strend2(t3, s3) == 0);
+    //This should return true
+    char t4[] = {'h','e','l','l','o','\0'};
+    char s4[] = {'l','l','o','\0'};
+    assert(strend2(t4, s4) == 1);
+ 
+    //This should return false
+    char t5[] = {'h','o','\0'};
+    char s5[] = {'l','l','o','\0'};
+    assert(strend2(t5, s5) == 0);
+    
+   //This should return true
+    char t6[] = {'o','\0'};
+    char s6[] = {'o','\0'};
+    assert(strend2(t6, s6) == 1);
+ 
 
 }
