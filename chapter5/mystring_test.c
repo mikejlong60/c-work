@@ -17,7 +17,10 @@ int main() {
 
 
     char s2[] = {'h','e','\0'};    
-    strcat3(s2, t);
+    char *ss2;
+
+    ss2 = strcat3(s2, t);
+
     assert(strcmp3(s2, expected) == 0);
 
     //test strlen2
@@ -46,5 +49,32 @@ int main() {
     char s6[] = {'o','\0'};
     assert(strend2(t6, s6) == 1);
  
+   //test strcpy2 -- This should return true
+    char buffer[5];
+    char *result = strcpy2(buffer, "hello");
+    printf("buffer:%s \n", buffer);
+    printf("result:%s \n", result);
+    assert(strcmp3(buffer, "hello") == 0);
+   assert(strcmp3(result, "hello") == 0);
+
+
+   //test strncpy2 -- This should return true
+    char buffer3[9];
+    char *result3 = strncpy2(buffer3, "hello", 8);
+    printf("buffer3[%s] \n", buffer3);
+    printf("result3[%s] \n", result3);
+    assert(strcmp3(buffer3, "hello") == 0);
+    assert(strcmp3(result3, "hello") == 0);
+
+
+    char buffer2[1];
+    char *result2 = strncpy2(buffer2, "hello", 3);
+    printf("buffer2[%s] \n", buffer2);
+    printf("result2[%s] \n", result2);
+    assert(strcmp3(buffer2, "hel") == 0);
+    assert(strcmp3(result2, "hel") == 0);
+
+
+
 
 }

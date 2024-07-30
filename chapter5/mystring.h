@@ -18,8 +18,62 @@ int strcmp3(char *s, char *t) {
     return *s - *t;
 }
 
-//
-void strcat2(char s[], char t[]) {
+//Pointer version of string copy
+//copy string 'from', to string 'to', including '\0'; return to
+char *strcpy2(char *to, char *from) {
+    char *t = to;
+    char *f = from;
+    while ((*t++ = *f++) != '\0')
+        ;
+    return to;
+}
+
+//concatenate string 'from' to end of string 'to' and return 'to'
+char *strcat3(char *to, char *from) {
+    while (*to != '\0') to++;
+    while ((*to++ = *from++) != '\0') //copy
+        ;
+    return to;
+}
+
+//Pointer version of string copy
+//copy at most n characters of string 'from' to string 'to'. 
+// return 'to'.  Pad with '\0's if from has fewer than n characters.
+char *strncpy2(char *dest, char *src, int n) {
+    int i = 0;
+    for (i = 0; i < n && src[i] != '\0'; i++) {
+        dest[i] = src[i];
+    }
+
+    for ( ; i < n; i++) {
+        dest[i] = '\0';
+    }
+    return dest;
+}
+
+char *strncpy2old(char *to, char *from, int n) {
+    char *t = to;
+    char *f = from;
+    int i = 0;
+
+    while ((*t++ = *f++) != '\0') {
+        printf("to[%s] \n", to);
+        i++;
+        if (i >= n) {
+            break;
+        }
+       
+    }
+    printf("i:%d \n", i);
+    printf("n:%d \n", n);
+    char *r = t;
+    for (int j = 0; j < (n-i); j++) {
+        r = strcat3(to, "\0");
+    }
+    return to;
+}
+
+char strncat2(char s[], char t[], int n) {
     int i, j;
     i = j = 0;
     while (s[i] != '\0')
@@ -28,9 +82,12 @@ void strcat2(char s[], char t[]) {
         ;
 }
 
-void strcat3(char *s, char *t) {
-    while (*s != '\0') s++;
-    while ((*s++ = *t++) != '\0') //copy
+void strcat2(char s[], char t[]) {
+    int i, j;
+    i = j = 0;
+    while (s[i] != '\0')
+        i++;
+    while ((s[i++] = t[j++]) != '\0') //copy
         ;
 }
 
