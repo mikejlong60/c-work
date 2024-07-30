@@ -2,9 +2,30 @@
 #include <assert.h>
 #include "mystring.h"
 
+
+void test_strncpy2_n_gt_from_size() {
+    char buffer[9];
+    char hello[6] = "hello";
+    char *result = strncpy2(buffer, hello, 8);
+    printf("buffer3[%s] \n", buffer);
+    printf("result3[%s] \n", result);
+    assert(strcmp3(buffer, "hello") == 0);
+    assert(strcmp3(result, "hello") == 0);
+}
+
+void test_strncpy2_n_lt_from_size() {
+    char buffer[8] = "";
+    char hello[6] = "hello";
+    char* result = strncpy2(buffer, hello, 3);
+    printf("buffer[%s] - comp[%d] \n", buffer, strcmp3(buffer, "hel"));
+    printf("result[%s] comp[%d] \n", result, strcmp3(result, "hel"));
+    assert(strcmp3(buffer, "hel") == 0);
+    assert(strcmp3(result, "hel") == 0);
+}
+
 int main() {
     char s[] = {'h','e','\0'};
-    char t[] = {'l','l','o','\0'};
+    char t[] = {'l','l','o', '\0'};
     strcat2(s, t);
   
     char expected[] = {'h','e','l','l','o', '\0'};
@@ -55,26 +76,9 @@ int main() {
     printf("buffer:%s \n", buffer);
     printf("result:%s \n", result);
     assert(strcmp3(buffer, "hello") == 0);
-   assert(strcmp3(result, "hello") == 0);
+    assert(strcmp3(result, "hello") == 0);
 
 
-   //test strncpy2 -- This should return true
-    char buffer3[9];
-    char *result3 = strncpy2(buffer3, "hello", 8);
-    printf("buffer3[%s] \n", buffer3);
-    printf("result3[%s] \n", result3);
-    assert(strcmp3(buffer3, "hello") == 0);
-    assert(strcmp3(result3, "hello") == 0);
-
-
-    char buffer2[1];
-    char *result2 = strncpy2(buffer2, "hello", 3);
-    printf("buffer2[%s] \n", buffer2);
-    printf("result2[%s] \n", result2);
-    assert(strcmp3(buffer2, "hel") == 0);
-    assert(strcmp3(result2, "hel") == 0);
-
-
-
-
+   // test_strncpy2_n_gt_from_size();
+    test_strncpy2_n_lt_from_size();
 }

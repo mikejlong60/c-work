@@ -36,19 +36,37 @@ char *strcat3(char *to, char *from) {
     return to;
 }
 
+//concatenate at most n characters of string 'from' to string 'to'.
+//Pad with '\0's if 'from' has fewer than n characters.
+char *strncat3(char *to, char *from, int n) {
+    
+    while (*to != '\0') to++;//Set the 'to' pointer to end.
+    
+    int i = 0;
+    while (((*to++ = *from++) != '\0') && (i < n)) {//copy
+        i++;
+    }
+
+     for ( ; i < n; i++) {//Pad if neccessary
+        to[i] = 'a';
+    }
+    return to;
+}
+
+
+
 //Pointer version of string copy
 //copy at most n characters of string 'from' to string 'to'. 
 // return 'to'.  Pad with '\0's if from has fewer than n characters.
-char *strncpy2(char *dest, char *src, int n) {
+char *strncpy2(char *to, const char *from, int n) {
     int i = 0;
-    for (i = 0; i < n && src[i] != '\0'; i++) {
-        dest[i] = src[i];
+    for (; i < n && from[i] != '\0'; i++) {
+        to[i] = from[i];
     }
-
-    for ( ; i < n; i++) {
-        dest[i] = '\0';
+    for (; i < n; i++) {
+        to[i] = '\0';
     }
-    return dest;
+    return to;
 }
 
 char *strncpy2old(char *to, char *from, int n) {
