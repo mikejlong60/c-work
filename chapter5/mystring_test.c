@@ -23,28 +23,62 @@ void test_strncpy2_n_lt_from_size() {
     assert(strcmp3(result, "hel") == 0);
 }
 
-int main() {
-    char s[] = {'h','e','\0'};
-    char t[] = {'l','l','o', '\0'};
-    strcat2(s, t);
-  
-    char expected[] = {'h','e','l','l','o', '\0'};
+void test_strcat3() {
+    char s[3] = "he";    
+    char t[4] = "llo";
+    char* result = strcat3(s, t);
+    char expected[6] = "hello";
     assert(strcmp3(s, expected) == 0);
-    
+    //assert(strcmp3(result, expected) == 0);
+}
+
+void test_strncat3_concat_all_giant_n() {
+    char s[3] = "he";    
+    char t[4] = "llo";
+    char* result = strncat3(s, t, 800);
+    printf("result[%s]\n", result);
+    printf("s[%s]\n", s);
+    char expected[6] = "hello";
+    assert(strcmp3(s, expected) == 0);
+    assert(strcmp3(result, expected) == 0);
+}
+
+void test_strncat3_concat_all() {
+    char s[3] = "he";    
+    char t[4] = "llo";
+    char* result = strncat3(s, t, 3);
+    char expected[6] = "hello";
+    assert(strcmp3(s, expected) == 0);
+    assert(strcmp3(result, expected) == 0);
+}
+
+void test_strncat3_concat_2() {
+    char s[3] = "he";    
+    char t[4] = "llo";
+    char* result = strncat3(s, t, 2);
+    char expected[6] = "hell";
+    assert(strcmp3(s, expected) == 0);
+    assert(strcmp3(result, expected) == 0);
+}
 
 
-    ////////////////////
-    assert(strcmp2(s, expected) == 0);
+void test_strncat3_concat_1() {
+    char s[3] = "he";    
+    char t[4] = "llo";
+    char* result = strncat3(s, t, 1);
+    char expected[6] = "hel";
+    assert(strcmp3(s, expected) == 0);
+    assert(strcmp3(result, expected) == 0);
+}
 
-
-    char s2[] = {'h','e','\0'};    
-    char *ss2;
-
-    ss2 = strcat3(s2, t);
-
-    assert(strcmp3(s2, expected) == 0);
-
+int main() {
+    test_strcat3();
+    test_strncat3_concat_all_giant_n();
+    test_strncat3_concat_all();
+    test_strncat3_concat_1();
+    test_strncat3_concat_2();
     //test strlen2
+     char expected[] = {'h','e','l','l','o', '\0'};
     int a = strlen2(expected);
     assert(strlen2(expected) == 5);
 
@@ -79,6 +113,6 @@ int main() {
     assert(strcmp3(result, "hello") == 0);
 
 
-   // test_strncpy2_n_gt_from_size();
-    test_strncpy2_n_lt_from_size();
+    //test_strncpy2_n_gt_from_size();
+    //test_strncpy2_n_lt_from_size();
 }

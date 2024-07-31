@@ -33,23 +33,28 @@ char *strcat3(char *to, char *from) {
     while (*to != '\0') to++;
     while ((*to++ = *from++) != '\0') //copy
         ;
+    printf("to[%s]\n", *to);
     return to;
 }
 
 //concatenate at most n characters of string 'from' to string 'to'.
 //Pad with '\0's if 'from' has fewer than n characters.
 char *strncat3(char *to, char *from, int n) {
-    
-    while (*to != '\0') to++;//Set the 'to' pointer to end.
-    
     int i = 0;
-    while (((*to++ = *from++) != '\0') && (i < n)) {//copy
+    for (; to[i] != '\0'; i++);//move index to end of to
+     
+    int j = 0;
+    while ((from[j] != '\0') && (j < n)) {
+        to[i] = from[j];
+        j++;
         i++;
-    }
-
-     for ( ; i < n; i++) {//Pad if neccessary
-        to[i] = 'a';
-    }
+    } 
+    
+    while (j <= n) { //Pad if neccessary
+        to[i] = '\0';
+        j++;
+        i++;
+    }        
     return to;
 }
 
