@@ -18,12 +18,15 @@ char *strcpy2(char *to, char *from) {
     return to;
 }
 
-//concatenate string 'from' to end of string 'to' and return 'to'
-char *strcat3(char *to, char *from) {
+char *strcat3(char *dest, const char *from) {
+    char *to = dest;
+    
     while (*to != '\0') to++;
+        
     while ((*to++ = *from++) != '\0') //copy
         ;
-    return to;
+    *to = '\0';
+    return dest;
 }
 
 // NOTE This is your safest function!!!!!!!  Others may cause seg faults!!!!!
