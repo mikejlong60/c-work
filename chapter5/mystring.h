@@ -1,13 +1,3 @@
-//Array version of string comparison
-//Returns < 0 is s < t, o if s == t, >0 is s > t
-int strcmp2(char *s, char *t) {
-    int i;
-    for (i = 0; s[i] == t[i]; i++)
-        if (s[i]  == '\0')
-            return 0;
-    return s[i] - t[i];
-}
-
 //Pointer version of string comparison
 //Returns < 0 is s < t, o if s == t, >0 is s > t
 int strcmp3(char *s, char *t) {
@@ -33,10 +23,10 @@ char *strcat3(char *to, char *from) {
     while (*to != '\0') to++;
     while ((*to++ = *from++) != '\0') //copy
         ;
-    printf("to[%s]\n", *to);
     return to;
 }
 
+// NOTE This is your safest function!!!!!!!  Others may cause seg faults!!!!!
 //concatenate at most n characters of string 'from' to string 'to'.
 //Pad with '\0's if 'from' has fewer than n characters.
 char *strncat3(char *to, char *from, int n) {
@@ -72,46 +62,6 @@ char *strncpy2(char *to, const char *from, int n) {
         to[i] = '\0';
     }
     return to;
-}
-
-char *strncpy2old(char *to, char *from, int n) {
-    char *t = to;
-    char *f = from;
-    int i = 0;
-
-    while ((*t++ = *f++) != '\0') {
-        printf("to[%s] \n", to);
-        i++;
-        if (i >= n) {
-            break;
-        }
-       
-    }
-    printf("i:%d \n", i);
-    printf("n:%d \n", n);
-    char *r = t;
-    for (int j = 0; j < (n-i); j++) {
-        r = strcat3(to, "\0");
-    }
-    return to;
-}
-
-char strncat2(char s[], char t[], int n) {
-    int i, j;
-    i = j = 0;
-    while (s[i] != '\0')
-        i++;
-    while ((s[i++] = t[j++]) != '\0') //copy
-        ;
-}
-
-void strcat2(char s[], char t[]) {
-    int i, j;
-    i = j = 0;
-    while (s[i] != '\0')
-        i++;
-    while ((s[i++] = t[j++]) != '\0') //copy
-        ;
 }
 
 int strlen2(char *s) {
