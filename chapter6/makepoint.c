@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 
-//makepoint: make a point from x and y components
-
 struct Point {
     int x;
     int y;
@@ -48,15 +46,19 @@ struct Rect canonrect(struct Rect r) {
 int main() {
 
     struct Rect screen;
-    screen.pt1 = makepoint(0,0);
+    screen.pt1 = makepoint(200,30);
     screen.pt2 = makepoint(1200,1200);
 
     struct Rect s2 = canonrect(screen);
-    struct Point pt;
+
+    struct Point pt, *pp;
+    pp = &s2.pt1;
+
     pt.x = 12;
     pt.y=3;
 
     printf("%d,%d\n",pt.x, pt.y);
+    printf("pointer version:%d,%d\n",pp->x, pp->y);
 
     double number = 25;
     double result = sqrt(number);
