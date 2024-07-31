@@ -50,7 +50,7 @@ char *strncat3(char *to, char *from, int n) {
         i++;
     } 
     
-    while (j <= n) { //Pad if neccessary
+    while (j <= n && from[j] != '\0') { //Pad if neccessary
         to[i] = '\0';
         j++;
         i++;
