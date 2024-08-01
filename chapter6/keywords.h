@@ -33,10 +33,10 @@ int getword(char *word, int lim) {
         return c;
     }
     for ( ; --lim > 0; w++)
-    if (!isalnum(*w = getch())) {
-        ungetch(*w);
-        break;
-    }
+        if (!isalnum(*w = getch())) {
+            ungetch(*w);
+            break;
+        }
     *w = '\0';
     return word[0];
 }

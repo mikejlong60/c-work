@@ -14,18 +14,13 @@ int main() {
     char word[MAXWORD];
     struct Key *p;
     
-    printf("1\n");
-    while (getword(word, MAXWORD) != EOF) {
-        printf("2\n");
-        if (isalpha(word[0])) {
-            printf("3: word[%s] keytab[%d] NKEYS[%d]\n", word, keytab[0].count, NKEYS);
-            if ((p=binsearch(word, keytab, NKEYS)) != NULL) {
-                printf("4: keytab.word[%s], keytab.count[%d]\n", keytab->word, keytab->count);
+    while (getword(word, MAXWORD) != EOF) 
+        if (isalpha(word[0])) 
+            if ((p=binsearch(word, keytab, NKEYS)) != NULL) 
                 p->count++;
-            }
-            printf("5\n");
-        }
-    }
+            
+        
+    
     for (p = keytab; p < keytab + NKEYS; p++)
         if (p->count > 0)
             printf("%4d %s\n", p->count, p->word);

@@ -12,18 +12,12 @@ int binsearch(char *, struct Key *, int);
 int main() {
     int n;
     char word[MAXWORD];
-    printf("1\n");
-    while (getword(word, MAXWORD) != EOF) {
-        printf("2\n");
-        if (isalpha(word[0])) {
-            printf("3: word[%s] keytab[%d] NKEYS[%d]\n", word, keytab[0].count, NKEYS);
-            if ((n = binsearch(word, keytab, NKEYS)) >= 0) {
-                printf("4: n[%d], keytab.word[%s], keytab.count[%d]\n", n, keytab[n].word, keytab[n].count);
+
+    while (getword(word, MAXWORD) != EOF) 
+        if (isalpha(word[0]))        
+            if ((n = binsearch(word, keytab, NKEYS)) >= 0) 
                 keytab[n].count++;
-            }
-            printf("5\n");
-        }
-    }
+            
     for (n = 0; n < NKEYS; n++)
         if (keytab[n].count > 0)
             printf("%4d %s\n", keytab[n].count, keytab[n].word);
