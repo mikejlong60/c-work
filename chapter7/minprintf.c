@@ -5,11 +5,37 @@ typedef char String;
 
 //minimal printf with variable argument list
 void minprintf(String *fmt, ...) {
+
+   //Union type messing from chapter 6 in book
+    struct {
+        char *name;
+        int flags;
+        int utype;
+        union {
+            int ival;
+            float fval;
+            String *sval;
+        } u;
+    } symtab[10];
+
+    symtab[0].u.sval = "FRED";
+    printf("symtab test %s\n", symtab[0].u.sval);
+
+    //Bit fields messing from chapter 6 in book
+    enum { KEYWORD = 01, EXTERNAL = 02, STATIC = 04 };
+    struct {
+        unsigned int is_keyword : 1;
+        unsigned int is_extern : 1;
+        unsigned int is_static : 1;
+    } flags;
+    flags.is_extern= flags.is_keyword = flags.is_keyword = 1;
+    //////////////////////  Beginning of actual exercise
     va_list ap;//points to each unnamed arg in turn
     String *p, *sval;
     int ival;
     double dval;
 
+   
     va_start(ap, fmt);  //Make ap print to first unnamed arg
     for (p = fmt; *p; p++) {
         if (*p != '%') {
