@@ -11,9 +11,10 @@ char *alloc(int n) /* return pointer to n characters */
     if (allocbuf + ALLOCSIZE - allocp >= n) { /* it fits */
         allocp += n;
         return allocp - n; /* old p */
-    } else /* not enough room */
+    } else {/* not enough room */
         printf("no room\n");
-        return NULL;
+        return 0;
+    }
 }
 
 void afree(char *p) /* free storage pointed to by p */
@@ -25,51 +26,34 @@ void afree(char *p) /* free storage pointed to by p */
 
 void printArray(char *arr, int size) {
     for (int i = 0; i < size; i++) {
-        printf("%c", arr[i]);
+        printf("hegidge:%c\n", arr[i]);
     }
     printf("||\n");
 }
 
-int strlen2(char *s) {
-    char *p = s;
-
-    while (*p != '\0') {
-        p++;
-    }
-    return p - s;
-}
-
-//Copy t to s  --array subscript version
-void strcpy2(char *s, char *t) {
-    int i;
-    i = 0;
-    while((s[i] = t[i]) != '\0') {
-        i++;
-    }
-}
 
 //final version. copy t to s which continues the loop until the expression evaluates to false(0).
 void strcpy3(char *s, char *t) {
-    while (*s++ = *t++)
+    while ((*s++ = *t++))
         ;
 }
 
 int main() {
-    char *p = alloc(1000);
+    char *p = alloc(3);
     p = "michael";
-    printArray(p, 9);
+    printArray(p, 7);
     afree(p);
     printArray(p, 7);
 
     char *f = p;
     printArray(f, 7);
     
-    char *p1 = alloc(10000000);
+    char *p1 = alloc(100);
     printf("dang:%p\n", p1);
 
     printf("length of p:%d\n",strlen2(p));
 
-    char *t;
+    char *t = NULL;
     strcpy3(t, p);
     printArray(t, 7);
     
@@ -80,7 +64,7 @@ int main() {
     char s1[] = {'H', 's','e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!', '\0'};
     char s2[] = {'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!', '\0'};
 
-    printf("String array comparison:%d\n",strcmp2(s1, s2));
+    printf("String array comparison:%d\n",strcmp3(s1, s2));
 
     char *s3;
     char *s4;
